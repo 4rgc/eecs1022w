@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class BMIActivity extends AppCompatActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -26,7 +25,8 @@ public class BMIActivity extends AppCompatActivity
         String height = heightView.getText().toString();
 
         BMIModel myModel = new BMIModel(weight, height);
-        String myBMI = myModel.GetBMI();
+        double bmi = myModel.GetBMI();
+        String myBMI = String.format("%.1f", bmi);
 
         ((TextView) findViewById(R.id.answer)).setText(myBMI);
 

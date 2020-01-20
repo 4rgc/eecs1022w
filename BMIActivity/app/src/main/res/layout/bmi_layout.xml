@@ -21,9 +21,11 @@
 
     <EditText
         android:id="@+id/weightBox"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
         android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +48,11 @@
 
     <EditText
         android:id="@+id/heightBox"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
         android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,15 +62,11 @@
 
     <Button
         android:id="@+id/getBMIButton"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
         android:onClick="buttonClicked"
         android:text="Get BMI"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/heightBox"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/heightBox"
         app:layout_constraintTop_toBottomOf="@+id/heightBox" />
@@ -76,16 +76,16 @@
         android:id="@+id/answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="BMI"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getBMIButton"
-        tools:textColor="#000000" />
+        tools:textColor="#0000FF" />
         
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,9 +10,8 @@ public class BMIModel
         this.height = Double.parseDouble(h);
     }
 
-    public String GetBMI() {
-        double index = this.weight / (this.height * this.height);
-        return String.format("%.1f", index);
+    public double GetBMI() {
+        return this.weight / (this.height * this.height);
     }
 
     public static void main(String[] args)
