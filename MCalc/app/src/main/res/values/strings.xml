@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MCalc</string>
+    <string name="principle_label">Principle (in dollars)</string>
+    <string name="amortization_label">Amortization (in years)</string>
+    <string name="empty_hint" />
+    <string name="interest_label">Interest (as an annual percent)</string>
+    <string name="monthly_button">Monthly Payment</string>
+    <string name="monthly_result_label">$0.0</string>
 </resources>
