@@ -10,6 +10,7 @@ public class MortgageModel {
         principle = Double.parseDouble(p);
         amortization = Double.parseDouble(a);
         interest = Double.parseDouble(i)/100;
+        monthlyPayment = computePayment();
     }
 
     public double computePayment() {

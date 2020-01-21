@@ -3,6 +3,12 @@ package com.andriibohdan.mcalc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class EntryForm extends AppCompatActivity {
 
@@ -10,5 +16,25 @@ public class EntryForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mortgage_layout);
+    }
+
+    private static String monthlyPaymentFormat(double p) {
+        NumberFormat formatter = new DecimalFormat("$#,###.##");
+        return formatter.format(p);
+    }
+
+    public void onMonthlyButtonClick(View v) {
+        MortgageModel model = new MortgageModel(
+            ((EditText)findViewById(R.id.principleView)).getText().toString(),
+            ((EditText)findViewById(R.id.amortizationView)).getText().toString(),
+            ((EditText)findViewById(R.id.interestView)).getText().toString()
+        );
+        model.computePayment();
+        ((TextView) findViewById(R.id.monthlyPaymentLabel))
+                .setText(
+                        monthlyPaymentFormat(
+                            model.getMonthlyPayment()
+                )
+        );
     }
 }
