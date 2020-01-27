@@ -18,11 +18,6 @@ public class EntryForm extends AppCompatActivity {
         setContentView(R.layout.mortgage_layout);
     }
 
-    private static String monthlyPaymentFormat(double p) {
-        NumberFormat formatter = new DecimalFormat("$#,###.##");
-        return formatter.format(p);
-    }
-
     public void onMonthlyButtonClick(View v) {
         MortgageModel model = new MortgageModel(
             ((EditText)findViewById(R.id.principleView)).getText().toString(),
@@ -32,9 +27,7 @@ public class EntryForm extends AppCompatActivity {
         model.computePayment();
         ((TextView) findViewById(R.id.monthlyPaymentLabel))
                 .setText(
-                        monthlyPaymentFormat(
-                            model.getMonthlyPayment()
-                )
-        );
+                        model.getMonthlyPaymentString()
+                );
     }
 }

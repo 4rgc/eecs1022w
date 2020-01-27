@@ -1,5 +1,8 @@
 package com.andriibohdan.mcalc;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class MortgageModel {
     private double principle;
     private double amortization;
@@ -14,7 +17,7 @@ public class MortgageModel {
     }
 
     public double computePayment() {
-        return monthlyPayment = (principle * interest)/(1-Math.pow(1+interest, -amortization*12));
+        return monthlyPayment = (principle * (interest/12))/(1 - Math.pow(1+(interest/12), -(amortization*12)));
     }
 
     public double getMonthlyPayment() {
@@ -27,5 +30,10 @@ public class MortgageModel {
 
         MortgageModel m2 = new MortgageModel("300000", "20", "4.5");
         System.out.println(m2.computePayment());
+    }
+
+    public String getMonthlyPaymentString() {
+        NumberFormat formatter = new DecimalFormat("$#,###.##");
+        return formatter.format(monthlyPayment);
     }
 }
