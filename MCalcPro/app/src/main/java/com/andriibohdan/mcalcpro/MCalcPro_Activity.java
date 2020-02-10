@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -162,5 +163,25 @@ public class MCalcPro_Activity extends AppCompatActivity {
         mp.setPrinciple(principle);
         mp.setAmortization(amortization);
         mp.setInterest(interest);
+
+        String out = "Monthly payment: " + mp.computePayment("%,.2f") +
+                "\n\nBy making this payment monthly for " + mp.getAmortization() +
+                " years, the mortgage will be paid in full. But if you terminate the mortgage " +
+                "on its nth anniversary, the balance still owing depends on n as shown below: " +
+                "\n\n\tn\t\t\t\t\t\t\t\tBalance\n\n";
+
+        int amortizationNum = Integer.parseInt(mp.getAmortization());
+        for(int i = 1; i <= 4; i++) {
+            out += "\t" + i + "\t" + mp.outstandingAfter(i,"%,16.0f") + "\n";
+        }
+        for(int i = 5; i <= amortizationNum; i+=5) {
+            out += "\t" + i + "\t" + mp.outstandingAfter(i,"%,16.0f") + "\n";
+        }
+        if(amortizationNum % 5 != 0) {
+            out += "\t" + amortizationNum + "\t" +
+                    mp.outstandingAfter(amortizationNum,"%,16.0f") + "\n";
+        }
+        TextView tv = (TextView)findViewById(R.id.output);
+        tv.setText(out);
     }
 }
