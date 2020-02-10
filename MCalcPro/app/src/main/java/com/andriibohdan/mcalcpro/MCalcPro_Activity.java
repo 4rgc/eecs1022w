@@ -4,7 +4,11 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -17,13 +21,20 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.Locale;
+
 import ca.roumani.i2c.MPro;
 
-public class MCalcPro_Activity extends AppCompatActivity {
+public class MCalcPro_Activity extends AppCompatActivity implements TextToSpeech.OnInitListener, SensorEventListener {
+
+    private TextToSpeech tts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mcalcpro_layout);
+
+        tts = new TextToSpeech(this,this);
 
         final EditText pBox = findViewById(R.id.pBox),
                 aBox = findViewById(R.id.aBox),
@@ -164,11 +175,12 @@ public class MCalcPro_Activity extends AppCompatActivity {
         mp.setAmortization(amortization);
         mp.setInterest(interest);
 
-        String out = "Monthly payment: " + mp.computePayment("%,.2f") +
+        String out = "Monthly payment: $" + mp.computePayment("%,.2f") +
                 "\n\nBy making this payment monthly for " + mp.getAmortization() +
                 " years, the mortgage will be paid in full. But if you terminate the mortgage " +
-                "on its nth anniversary, the balance still owing depends on n as shown below: " +
-                "\n\n\tn\t\t\t\t\t\t\t\tBalance\n\n";
+                "on its nth anniversary, the balance still owing depends on n as shown below: ";
+        tts.speak(out, TextToSpeech.QUEUE_FLUSH, null);
+        out += "\n\n\tn\t\t\t\t\t\t\t\tBalance\n\n";
 
         int amortizationNum = Integer.parseInt(mp.getAmortization());
         for(int i = 1; i <= 4; i++) {
@@ -183,5 +195,28 @@ public class MCalcPro_Activity extends AppCompatActivity {
         }
         TextView tv = (TextView)findViewById(R.id.output);
         tv.setText(out);
+
     }
+
+    @Override
+    public void onInit(int status) {
+        this.tts.setLanguage(Locale.CANADA);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        double ax = event.values[0];
+        double ay = event.values[1];
+        double az = event.values[2];
+        double a = Math.sqrt(ax*ax + ay*ay + az*az);
+        if(a > 20) {
+            ((EditText) findViewById(R.id.pBox)).setText("");
+            ((EditText) findViewById(R.id.aBox)).setText("");
+            ((EditText) findViewById(R.id.iBox)).setText("");
+            ((TextView) findViewById(R.id.output)).setText("");
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 }
