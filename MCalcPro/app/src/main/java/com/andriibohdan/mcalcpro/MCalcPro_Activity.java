@@ -1,25 +1,17 @@
 package com.andriibohdan.mcalcpro;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.Locale;
 
@@ -33,6 +25,9 @@ public class MCalcPro_Activity extends AppCompatActivity implements TextToSpeech
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mcalcpro_layout);
+
+        SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), sm.SENSOR_DELAY_NORMAL);
 
         tts = new TextToSpeech(this,this);
 
@@ -193,7 +188,7 @@ public class MCalcPro_Activity extends AppCompatActivity implements TextToSpeech
             out += "\t" + amortizationNum + "\t" +
                     mp.outstandingAfter(amortizationNum,"%,16.0f") + "\n";
         }
-        TextView tv = (TextView)findViewById(R.id.output);
+        TextView tv = findViewById(R.id.output);
         tv.setText(out);
 
     }
