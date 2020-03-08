@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">KryptoNote</string>
+    <string name="encrypt_btn">Encrypt</string>
+    <string name="decrypt_btn">Decrypt</string>
+    <string name="key_hint">Cryptographic key</string>
+    <string name="filename_hint" >File name</string>
+    <string name="savefile_btn">Save</string>
+    <string name="loadfile_btn">Load</string>
+    <string name="data_tb">...</string>
 </resources>
