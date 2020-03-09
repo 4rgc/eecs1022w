@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/key_tbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -18,36 +18,38 @@
         android:ems="10"
         android:hint="@string/key_hint"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/encrypt_btn"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/encrypt_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
+        android:onClick="onEncryptClick"
         android:text="@string/encrypt_btn"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/decrypt_btn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/decrypt_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:onClick="onDecryptClick"
         android:text="@string/decrypt_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/filename_tbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -59,31 +61,33 @@
         android:hint="@string/filename_hint"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/save_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/key_tbox" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
+        android:onClick="onSave"
         android:text="@string/savefile_btn"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toStartOf="@+id/load_btn"
+        app:layout_constraintTop_toBottomOf="@+id/encrypt_btn" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/load_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:onClick="onLoad"
         android:text="@string/loadfile_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/decrypt_btn" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -98,11 +102,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/filename_tbox"
         app:layout_constraintVertical_bias="1.0">
 
         <EditText
-            android:id="@+id/data"
+            android:id="@+id/data_tbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

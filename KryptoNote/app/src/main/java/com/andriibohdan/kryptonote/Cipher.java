@@ -1,5 +1,7 @@
 package com.andriibohdan.kryptonote;
 
+import android.view.View;
+
 import static java.lang.System.out;
 
 public class Cipher {
