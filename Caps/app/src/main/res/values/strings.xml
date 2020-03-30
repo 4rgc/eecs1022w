@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Caps</string>
+    <string name="scoreLb_ph">SCORE=0</string>
+    <string name="qNumberLb_ph">Q1</string>
+    <string name="questionLb_ph">Question has to be here</string>
+    <string name="answerTb_hint">Your answer</string>
+    <string name="doneBtn_text">Done</string>
+    <string name="empty_string" />
+</resources>
