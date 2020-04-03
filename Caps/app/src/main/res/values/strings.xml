@@ -1,3 +1,8 @@
+<!--
+    Student name: Andrii Bohdan
+    This lab was done individually
+-->
+
 <resources>
     <string name="app_name">Caps</string>
     <string name="scoreLb_ph">SCORE=0</string>
@@ -6,4 +11,8 @@
     <string name="answerTb_hint">Your answer</string>
     <string name="doneBtn_text">Done</string>
     <string name="empty_string" />
+    <string name="qNumberLb_gameoverText">Game Over!</string>
+    <string name="scoreLb_text">SCORE=%d</string>
+    <string name="qNumberLb_text">Q%d</string>
+    <string name="log_text">Q%d: %s\nYour answer: %s\nCorrect answer: %s\n\n</string>
 </resources>
